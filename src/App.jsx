@@ -34,7 +34,6 @@ function App() {
           <div className="outlet" style={{ flex: "1", overflowY: "auto" }}>
             <Outlet />
           </div>
-
         </div>
         <Songbar />
         <audio ref={audioRef} src={track.file} preload='auto' onTimeUpdate={()=>{setCurrtime(audioRef.current.currentTime)}} onEnded={handleEnd}></audio>

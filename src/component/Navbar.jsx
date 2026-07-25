@@ -21,7 +21,7 @@ function Navbar() {
 
                 </div>
             </div>
-            <div className="div" style={{ height: "5%", display: "flex", gap: "10px", color: "white", margin: "5px" }}>
+            <div className="div" style={{ height: "5%", display: "flex", gap: "10px", color: "white", marginTop: "15px" }}>
 
                 <div onClick={() => setTab("All")} style={{ background: Tab === "All" ? "white" : "black", color: Tab === "All" ? "black" : "white",cursor: "pointer", padding: "5px", borderRadius: "10px" }}>
                     <p>All</p>

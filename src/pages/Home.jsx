@@ -21,8 +21,6 @@ function Home() {
                             <p>{album.desc}</p>
                         </div>
                     ))}
-
-
                 </div>
                 <h3 style={{fontSize:"20px",fontWeight:"bold"}}>Today's Big hits</h3>
                 <div style={{ height: "32%", background: "#121212", display: "flex", gap: "50px", }}>

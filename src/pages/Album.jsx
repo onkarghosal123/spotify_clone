@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../component/Navbar";
 import { useLocation, useParams } from "react-router-dom";
 import { albumsData } from "../assets/assets";
+import Albumpage from "../component/Albumpage"
 
 function Album() {
     const params = useParams();
@@ -13,8 +14,9 @@ function Album() {
 
     return (
         <>
-            <div className="album-page" style={{ width: "100%", height: "90vh", background: isAlbumPage? `${bgColor}` : "#123456", paddingLeft: "20px", display: "flex", gap: "20px", flexDirection: "column" }}>
+            <div className="album-page" style={{ width: "99%", height: "100vh",background:`linear-gradient(${bgColor},#121212)` ,marginTop:"8px", marginLeft:"10px",paddingLeft: "20px", display: "flex", color:"white", borderRadius:"5px",flexDirection: "column" }}>
                 <Navbar />
+                <Albumpage albumId={albumId}/>
             </div>
 
         </>
