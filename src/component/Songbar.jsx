@@ -64,64 +64,74 @@ function Songbar() {
         return `${min}:${sec < 10 ? "0" : ""}${sec}`
     }
 
+
     return (
-        <><div className="songbar" style={{ width: "100%", background: "black", padding: "15px", height: "10vh", color: "white", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-            <div className="song-details" style={{ display: "flex", gap: "20px" }}>
-                <img src={track.image} style={{ width: "40px", height: "40px", }} />
+        <div className="songbar">
+            <div className="song-details">
+                <img src={track.image} alt={track.name} />
                 <div className="song-name">
                     <h2>{track.name}</h2>
                     <p>{track.desc}</p>
                 </div>
             </div>
 
-            <div className="music-player" >
-                <div style={{ display: "flex", justifyContent: "center", gap: "15px" }}>
-                    <img src={assets.shuffle_icon} style={{ width: "20px", height: "20px" }} onClick={() => { setShuffle(!shuffle) }} />
-                    <img src={assets.prev_icon} onClick={() => prevTrack(track.id)} style={{ width: "20px", height: "20px" }} />
-
-                    <img src={!isPlaying ? assets.play_icon : assets.pause_icon} onClick={() => playpause()} style={{ width: "20px", height: "20px" }} />
-
-                    <img src={assets.next_icon} onClick={() => nextTrack(track.id)} style={{ width: "20px", height: "20px" }} />
-                    <img src={assets.loop_icon} style={{ width: "20px", height: "20px" }} onClick={() => { setRepeat(!repeat) }} />
+            <div className="music-player">
+                <div className="player-controls">
+                    <img src={assets.shuffle_icon} alt="Shuffle"
+                        onClick={() => setShuffle(!shuffle)} />
+                    <img src={assets.prev_icon} alt="Previous"
+                        onClick={() => prevTrack(track.id)} />
+                    <img
+                        src={!isPlaying ? assets.play_icon : assets.pause_icon}
+                        alt={isPlaying ? "Pause" : "Play"}
+                        onClick={playpause}
+                    />
+                    <img src={assets.next_icon} alt="Next"
+                        onClick={() => nextTrack(track.id)} />
+                    <img src={assets.loop_icon} alt="Repeat"
+                        onClick={() => setRepeat(!repeat)} />
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                    {/*
-                    <p>{time.currentTime.minute}:{time.currentTime.second}</p>
-                     <div ref={seekBar} style={{ width: "300px", height: "4px", background: "white", cursor: "pointer", borderRadius: "10px" }}>
-                        <hr ref={currentBar} style={{ width: "300px", height: "3px", background: "blue" }} />
-                    </div> 
-                    <p>{time.totalTime.minute}:{time.totalTime.second}</p>
-                 */}
+
+                <div className="progress-container">
                     <p>{formatTime(currTime)}</p>
-                    <input type="range" min="0" max={track.duration || 0} value={currTime} onChange={handleMusicbar} style={{ width: "400px", height: "5px", cursor: "pointer", accentColor: "#1DB954" }} />
-                    <p>{formatTime(track.duration)}</p>
+                    <input
+                        type="range"
+                        min="0"
+                        max={track.duration || 0}
+                        value={currTime}
+                        onChange={handleMusicbar}
+                    />
+                    <p>{formatTime(track.duration || 0)}</p>
                 </div>
-
             </div>
 
-            <div className="icons" style={{ height: "35%", display: "flex", gap: "10px", marginRight: "5px" }}>
-                <img src={assets.speaker_icon} />
-                <img src={assets.volume_icon} />
-                <input type="range" min='0' max="1" step="0.01" value={volume} onChange={handleVolume} />
-                <img src={assets.zoom_icon} onClick={handleFullscreen} />
-                <img src={assets.queue_icon} />
-                <img src={assets.mic_icon} onClick={() => { setShowlyrics(!showlyrics) }} />
-                <img src={assets.mini_player_icon} />
+            <div className="icons">
+                <img src={assets.speaker_icon} alt="Speaker" />
+                <img src={assets.volume_icon} alt="Volume" />
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={volume}
+                    onChange={handleVolume}
+                />
+                <img src={assets.zoom_icon} alt="Fullscreen"
+                    onClick={handleFullscreen} />
+                <img src={assets.queue_icon} alt="Queue" />
+                <img src={assets.mic_icon} alt="Lyrics"
+                    onClick={() => setShowlyrics(!showlyrics)} />
+                <img src={assets.mini_player_icon} alt="Mini player" />
             </div>
-            {
-                showlyrics && (
-                    <div className="lyrics" style={{ position: "fixed", bottom: "90px", right: "20px", width: "350px", height: "400px", background: "#121212", color: "white", overflowY: "auto" }}>
-                        <h2>{track.name}</h2>
-                        <pre>{track.lyrics}</pre>
-                    </div>
-                )
-            }
 
+            {showlyrics && (
+                <div className="lyrics">
+                    <h2>{track.name}</h2>
+                    <pre>{track.lyrics}</pre>
+                </div>
+            )}
         </div>
+    );
 
-
-        </>
-
-    )
 }
 export default Songbar
